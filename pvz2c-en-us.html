@@ -6,6 +6,7 @@
     <title>Arcaea</title>
     <link rel="stylesheet" href="./css/global-variables.css">
     <link rel="icon" href="./images/植物大战僵尸2.png" type="image/png" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <style>
 table {
   font-family: arial, sans-serif;
@@ -28,95 +29,67 @@ td, th {
     <button class="button-func">
         Go Back <!--文本内容-->
     </button></a>
+<br>
+<div id="tableContainer">Loading</div>
+<script>
+function loadExcel() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'pvz2c.xlsx', true);
+  xhr.responseType = 'arraybuffer'; // 支持 SheetJS 解析
 
-    <table>
-        <tr>
-            <th>Version</th>
-            <th>Release Date</th>
-            <th>Download Link</th>
-            <th>Note</th>
-        </tr>
-        <tr>
-            <td>3.8.5</td>
-            <td>27 September 2025</td>
-            <td><a href="https://pan.baidu.com/s/16oGWI1mzFw39K83VtvHvdw?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1715/baokai_3.8.5_1715_319_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.8.5_1715.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.8.4</td>
-            <td>24 September 2025</td>
-            <td><a href="https://pan.baidu.com/s/1ewiJgJaHJ89WVAvuRcj50Q?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1710/baokai_3.8.4_1710_307_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.8.4_1710.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.8.2</td>
-            <td>5 September 2025</td>
-            <td><a href="https://pan.baidu.com/s/1vip3GdVyWLPze-kj75EP3Q?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1706/baokai_3.8.2_1706_283_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.8.2_1706.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.8.1</td>
-            <td>28 August 2025</td>
-            <td><a href="https://pan.baidu.com/s/1-I9cKLXTPCO4X2uPuxkW1w?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/baokai_3.8.1_1705_269_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.8.1_1705.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.8.0</td>
-            <td>5 August 2025</td>
-            <td><a href="https://pan.baidu.com/s/1-I1vqx1SmSuxc1bxBRxH0A?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1700/baokai_3.8.0_1700_246_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.8.0_1700.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.7.9</td>
-            <td>30 July 2025</td>
-            <td><a href="https://pan.baidu.com/s/1UcjanrFJii_oY5BvDIdQwQ?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1695/baokai_3.7.9_1695_233_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.7.9_1695.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.7.8</td>
-            <td>11 July 2025</td>
-            <td><a href="https://pan.baidu.com/s/1ne2851lnYK61K6yXO_fiXg?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1691/baokai_3.7.8_1691_216_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.7.8_1691.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.7.6</td>
-            <td>8 July 2025</td>
-            <td><a href="https://pan.baidu.com/s/1K7eRVKEUZ3QCygLt16z_uQ?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1690/baokai_3.7.6_1690_208_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.7.6_1690.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-        <tr>
-            <td>3.7.4</td>
-            <td>5 June 2025</td>
-            <td><a href="https://pan.baidu.com/s/1AFhBupqHNUSys9zwW0RAhQ?pwd=1234">百度网盘 Password 1234</a>,
-                <a href="https://pvz2apk-cdn.ditwan.cn/1685/baokai_3.7.4_1685_163_dj2.0-2.0.0.apk">Talkweb CDN</a>,
-                <a href="https://github.com/A-Randomm-User/APK-save/releases/download/pvz2c-tw/3.7.4_1685.apk">Github</a>
-            </td>
-            <td>APK link from Official Website, Official, No Hack</td>
-        </tr>
-    </table>
+  xhr.onload = function() {
+    try {
+      var data = new Uint8Array(xhr.response);
+      var workbook = XLSX.read(data, { type: 'array' });
+      var sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+      var range = XLSX.utils.decode_range(sheet['!ref']);
+      var html = "<table>";
+
+      for (var R = range.s.r; R <= range.e.r; ++R) {
+        html += "<tr>";
+        for (var C = range.s.c; C <= range.e.c; ++C) {
+          var cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+          var cell = sheet[cellAddress];
+          var cellContent = "";
+
+          if (cell) {
+            cellContent = cell.v != null ? cell.v : "";
+
+            // http(s)、itms-services、ftp
+            if (typeof cellContent === "string" &&
+                cellContent.match(/^(https?:\/\/|itms-services:\/\/|ftp:\/\/)/i)) {
+              cellContent = '<a href="' + cellContent + '" target="_blank">Download</a>';
+            }
+          }
+
+          html += (R === 0 ? '<th>' : '<td>') + cellContent + (R === 0 ? '</th>' : '</td>');
+        }
+        html += "</tr>";
+      }
+
+      html += "</table>";
+      document.getElementById("tableContainer").innerHTML = html;
+    } catch (err) {
+      document.getElementById("tableContainer").innerHTML =
+        '<p style="color:red;">Could not parse xlsx: ' + err.message + '</p>';
+    }
+  };
+
+  xhr.onerror = function() {
+    document.getElementById("tableContainer").innerHTML =
+      '<p style="color:red;">Could not load xlsx file.</p>';
+  };
+
+  xhr.send();
+}
+
+// 等 DOM 加载完成再执行
+if (window.addEventListener) {
+  window.addEventListener('load', loadExcel, false);
+} else {
+  window.attachEvent('onload', loadExcel);
+}
+</script>
 </body>
 </html>
