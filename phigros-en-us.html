@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>植物大战僵尸2</title>
+    <title>Phigros</title>
     <link rel="stylesheet" href="./css/global-variables.css">
-    <link rel="icon" href="./images/植物大战僵尸2.png" type="image/png" />
+    <link rel="icon" href="./images/phigros.png" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <style>
 table {
@@ -34,7 +34,7 @@ td, th {
 <script>
 function loadExcel() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'pvz2c.xlsx', true);
+  xhr.open('GET', 'phigros.xlsx', true);
   xhr.responseType = 'arraybuffer'; // 支持 SheetJS 解析
 
   xhr.onload = function() {
