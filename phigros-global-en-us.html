@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phigros</title>
+    <link rel="stylesheet" href="./css/global-variables.css">
+    <link rel="icon" href="./images/phigros.png" type="image/png" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #696969;
+  text-align: left;
+  padding: 8px;
+}
+
+</style>
+</head>
+<body>
+    <button class="button-func";; onclick="toggleDarkMode()">Appearance</button>
+    <script src="Javascript/darkmode.js"></script>
+    <a href="./index.html"> <!--前往按钮的链接-->
+    <button class="button-func">
+        Go Back <!--文本内容-->
+    </button></a>
+<br>
+<div id="tableContainer">Loading</div>
+<script>
+function loadExcel() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'phigros-global.xlsx', true);
+  xhr.responseType = 'arraybuffer'; // 支持 SheetJS 解析
+
+  xhr.onload = function() {
+    try {
+      var data = new Uint8Array(xhr.response);
+      var workbook = XLSX.read(data, { type: 'array' });
+      var sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+      var range = XLSX.utils.decode_range(sheet['!ref']);
+      var html = "<table>";
+
+      for (var R = range.s.r; R <= range.e.r; ++R) {
+        html += "<tr>";
+        for (var C = range.s.c; C <= range.e.c; ++C) {
+          var cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+          var cell = sheet[cellAddress];
+          var cellContent = "";
+
+          if (cell) {
+            cellContent = cell.v != null ? cell.v : "";
+
+            // http(s)、itms-services、ftp
+            if (typeof cellContent === "string" &&
+                cellContent.match(/^(https?:\/\/|itms-services:\/\/|ftp:\/\/)/i)) {
+              cellContent = '<a href="' + cellContent + '" target="_blank">Download</a>';
+            }
+          }
+
+          html += (R === 0 ? '<th>' : '<td>') + cellContent + (R === 0 ? '</th>' : '</td>');
+        }
+        html += "</tr>";
+      }
+
+      html += "</table>";
+      document.getElementById("tableContainer").innerHTML = html;
+    } catch (err) {
+      document.getElementById("tableContainer").innerHTML =
+        '<p style="color:red;">Could not parse xlsx: ' + err.message + '</p>';
+    }
+  };
+
+  xhr.onerror = function() {
+    document.getElementById("tableContainer").innerHTML =
+      '<p style="color:red;">Could not load xlsx file.</p>';
+  };
+
+  xhr.send();
+}
+
+// 等 DOM 加载完成再执行
+if (window.addEventListener) {
+  window.addEventListener('load', loadExcel, false);
+} else {
+  window.attachEvent('onload', loadExcel);
+}
+</script>
+</body>
+</html>
