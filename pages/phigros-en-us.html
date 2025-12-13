@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phigros</title>
+    <link rel="stylesheet" href="../css/global-variables.css">
+    <link rel="icon" href="../images/phigros.png" type="image/png" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #696969;
+  text-align: left;
+  padding: 8px;
+}
+
+</style>
+</head>
+<body>
+    <div class="top-controls">
+      <a class="top-link" href="../index.html"><button class="button-func">Go Back</button></a>
+      <a class="top-link" href="javascript:void(0)">
+            <button class="button-func" onclick="toggleDarkMode()">
+                    Appearance <!--文本内容-->
+                </button>
+            </a>
+    </div>
+    <script src="../js/dark-mode.js"></script>
+<br>
+<div id="tableContainer">Loading</div>
+<script>
+function loadData(callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '../data/phigros.json', true);
+  xhr.responseType = 'text';
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        callback(null, data);
+      } catch (e) {
+        callback(new Error('Invalid JSON: ' + e.message));
+      }
+    } else {
+      callback(new Error('Could not fetch data file'));
+    }
+  };
+  xhr.onerror = function() { callback(new Error('Network error')); };
+  xhr.send();
+}
+
+function convertToLink(text) {
+  if (typeof text !== 'string') return text;
+  if (text.match(/^https?:\/\//i) || text.match(/^ftp:\/\//i)) return '<a href="' + text + '" target="_blank">Download</a>';
+  return text;
+}
+
+function init() {
+  loadData(function(err, data) {
+    var container = document.getElementById('tableContainer');
+    if (err) { container.innerHTML = '<p style="color:red;">' + err.message + '</p>'; return; }
+    if (!Array.isArray(data) || data.length === 0) { container.innerHTML = '<p>No data available</p>'; return; }
+    var html = '<table>';
+    var headers = Object.keys(data[0]);
+    html += '<tr>';
+    for (var h = 0; h < headers.length; h++) { html += '<th>' + headers[h] + '</th>'; }
+    html += '</tr>';
+    for (var r = 0; r < data.length; r++) {
+      html += '<tr>';
+      for (var c = 0; c < headers.length; c++) {
+        var cellText = convertToLink(data[r][headers[c]]);
+        html += '<td>' + cellText + '</td>';
+      }
+      html += '</tr>';
+    }
+    html += '</table>';
+    container.innerHTML = html;
+  });
+}
+
+if (window.addEventListener) { window.addEventListener('load', init, false); } else if (window.attachEvent) { window.attachEvent('onload', init); } else { window.onload = init; }
+</script>
+</body>
+</html>
